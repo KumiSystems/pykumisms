@@ -42,7 +42,7 @@ class KumiSMS:
 
     def _request(self, url, data={}):
         data.update({"key": self.key})
-        body = json.dumps(data)
+        body = json.dumps(data).encode()
         request = urllib.request.urlopen(url, body)
         content = json.loads(request.read())
         if content["status"] == "error":
