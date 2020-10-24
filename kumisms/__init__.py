@@ -40,8 +40,8 @@ class KumiSMS:
     def check(self):
         return bool(self.balance())
 
-    def _request(self, url, data=None):
-        data = {"key": self.key}.update(data)
+    def _request(self, url, data={}):
+        data.update({"key": self.key})
         body = json.dumps(data)
         request = urllib.request.urlopen(url, body)
         content = json.loads(request.read())
