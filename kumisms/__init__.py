@@ -40,6 +40,10 @@ class KumiSMS:
     def check(self):
         return bool(self.balance())
 
+    def ping(self):
+        endpoint = urllib.parse.urljoin(self.endpoint, "ping/")
+        return self._request(endpoint)["status"] == "success"
+
     def _request(self, url, data={}):
         data.update({"key": self.key})
         body = json.dumps(data).encode()
